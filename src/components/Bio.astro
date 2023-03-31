@@ -1,0 +1,33 @@
+---
+const { 
+  profileImage = "/placeholder-about.jpg"
+} = Astro.props;
+---
+
+
+
+
+<div>
+  <img src={profileImage} alt="About" />
+  <slot />
+</div>
+
+<style scoped>
+  div {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+  }
+
+  img {
+    width: 100px;
+    height: 100px;
+    border-radius: 100px;
+    display: block;
+    margin: 20px;
+  }
+
+  p {
+    font-size: 1.125rem;
+  }
+</style>

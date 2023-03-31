@@ -1,0 +1,115 @@
+---
+import Bio from "@components/Bio.astro";
+import GitHubStats from "@components/GitHubStats.astro";
+import Post from "../layouts/BlogPost.astro";
+---
+
+<Post
+	title="Welcome"
+	showMeta={false}
+	hideTitle={true}
+	description="Therosin's portfolio."
+	hideDescription={true}
+	tags={["about"]}
+	pubDate={new Date("March 31 2023")}
+	updatedDate={new Date("March 31 2023")}
+	imageSize="600"
+	isDraft={false}
+>
+	<section>
+		<div class="content info-box">
+			<div class="intro-left">
+				<p>
+					<Bio>
+						<span class="intro-text">Hi, there</span>
+						I'm Theros, a Computer Science student at the Open University
+						with focus on Networking and Security. I've been passionate
+						about technology for over a decade and during that time,
+						I've developed a variety of skills in software and web development,
+						server administration and computer repair. I'm proficient
+						in several programming languages, and always excited to learn
+						new skills.
+					</Bio>
+				</p>
+			</div>
+			<div class="github-right">
+				<GitHubStats
+					username="Therosin"
+					theme="city_lights"
+					show_icons={true}
+					hide_title={false}
+					hide_border={true}
+					card_width="300"
+				/>
+			</div>
+		</div>
+	</section>
+
+	<div class="content meta-box">
+		<div class="left-meta">
+			<h4>Skills:</h4>
+			<ul>
+				<li>Proficient in JavaScript, HTML, Lua, and Python</li>
+				<li>Experience developing software and web applications</li>
+				<li>Familiarity with Linux/Unix command line</li>
+				<li>
+					Understanding of networking concepts such as TCP/IP and
+					routing protocols
+				</li>
+			</ul>
+		</div>
+		<div class="right-meta">
+			<h4>Education:</h4>
+			<ul>
+				<li>
+					<p>
+						BSc Computing and IT, Open University.
+						<br /> Relevant Coursework:
+					</p>
+					<ul>
+						<li>Introduction to Computer Networks</li>
+						<li>Algorithms and Data Structures</li>
+						<li>Introduction to Web Development</li>
+					</ul>
+					<i>Expected Graduation: 2025</i>
+				</li>
+			</ul>
+		</div>
+	</div>
+</Post>
+
+<style lang="scss" scoped>
+	.info-box {
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		flex-wrap: wrap;
+		gap: 1rem;
+	}
+
+	.intro-left {
+		max-width: 70ch;
+		height: 100%;
+
+	}
+
+	.github-right {
+		margin-top: 5rem;
+		max-width: 40ch;
+	}
+
+	.intro-text {
+		font-size: 1.2rem;
+		font-weight: 500;
+		font-style: italic;
+	}
+
+	.meta-box {
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		vertical-align: center;
+		flex-wrap: wrap;
+		gap: 1rem;
+	}
+</style>

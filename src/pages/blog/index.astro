@@ -1,0 +1,38 @@
+---
+import Page from "../../layouts/Page.astro";
+import FormattedDate from "../../components/FormattedDate.astro";
+import BlogPostCard from "../../components/BlogPostCard.vue";
+import { getCollection } from "astro:content";
+
+const posts = (await getCollection("blog"))
+	.filter((post) => post.data.isDraft === false)
+	.sort((a, b) => {
+		const aData = a.data;
+		const bData = b.data;
+		const aDate = (aData.updatedDate || aData.pubDate).valueOf();
+		const bDate = (bData.updatedDate || bData.pubDate).valueOf();
+		return bDate - aDate;
+	});
+---
+
+<Page>
+	<h4>Articles:</h4>
+	<section>
+		{
+			posts.map((post) => (
+				<BlogPostCard url={`/blog/${post.slug}/`} tags={post.data.tags}>
+					<h2 slot="post-title">{post.data.title}</h2>
+					<p slot="post-date">
+						<FormattedDate date={post.data.pubDate} />
+					</p>
+					<p slot="post-description">{post.data.description}</p>
+					<img
+						slot="post-image"
+						src={post.data.heroImage}
+						class="card-thumbnail"
+					/>
+				</BlogPostCard>
+			))
+		}
+	</section>
+</Page>

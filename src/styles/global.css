@@ -1,0 +1,254 @@
+/**
+ * Global CSS
+ * global.js should have been imported by BaseHeader, so we will have acccess to
+ * data-scroll-pos-x and data-scroll-pos-y attributes, sections and articles in in the center of the viewport will have a class of "focus-target"
+*/
+
+/** Fira Code, used for code blocks */
+@import url(https://fonts.googleapis.com/css?family=Fira+Code:300,regular,500,600,700);
+/** Sono, used for headings */
+@import url(https://fonts.googleapis.com/css?family=Sono:200,300,regular,500,600,700,800);
+/** Montserrat, used for body text */
+@import url(https://fonts.googleapis.com/css?family=Montserrat:100,200,300,regular,500,600,700,800,900,100italic,200italic,300italic,italic,500italic,600italic,700italic,800italic,900italic);
+/** Proza Libre, used for quotes */
+@import url(https://fonts.googleapis.com/css?family=Proza+Libre:regular,italic,500,500italic,600,600italic,700,700italic,800,800italic);
+
+:root {
+	--max-height: 100svh;
+	--boxed-content-width: 125ch;
+	--primary-color: #0c8ce9;
+	--secondary-color: #87c5b7;
+	--tertiary-color: #ff7e33;
+	--background-nav: #3e4165;
+	--background-body: #3d3949;
+	--background-content: #333637;
+	--background-blog-card: #49435a44;
+	--text-main: #F2F3F4;
+	--text-secondary: #526f6c;
+	--text-link: #7ab2f6;
+	--blockquote-color: #b4b1b1;
+	--blockquote-background: #3737375f;
+	--codeblock-color: #1e1a22;
+	--codeblock-font-size: 1.2rem;
+	--codeblock-line-height: 1.5;
+	--font-family-serif: 'Proza Libre', serif;
+	--font-family-sans: 'Montserrat', sans-serif;
+	--font-family-mono: 'Fira Code', monospace;
+	--font-family-heading: 'Sono', sans-serif;
+}
+
+html,
+body {
+	font-family: var(--font-family-sans);
+	margin: auto;
+	padding: 20px;
+	max-width: 90vw;
+	min-height: 100svh;
+	text-align: left;
+	background-color: var(--background-body);
+	word-wrap: break-word;
+	overflow-wrap: break-word;
+	line-height: 1.5;
+	color: var(--text-main);
+	transition: background-color 0.8s ease, color 0.8s ease;
+}
+
+.left-side {
+	margin-left: 0;
+	margin-right: auto;
+}
+
+.right-side {
+	margin-left: auto;
+	margin-right: 0;
+}
+
+.sticky-top {
+	position: sticky;
+	top: 2rem;
+}
+
+.sticky-bottom {
+	position: sticky;
+	bottom: 2rem;
+}
+
+a {
+	color: var(--text-link);
+	text-decoration: none;
+}
+
+a:hover::before,
+.selected::before {
+	transform: scaleX(1);
+}
+
+.selected::before {
+	background: var(--primary-color);
+}
+
+.content-boxed {
+	max-width: var(--boxed-content-width);
+	margin: auto;
+}
+
+.content-boxed .content {
+	margin-top: 3rem;
+	background-color: var(--background-content);
+	padding: 2rem 2rem;
+	border-radius: 10px;
+}
+
+.content-full {
+	max-width: 95vw;
+}
+
+.content-full .content {
+	margin-top: 3rem;
+	background-color: var(--background-content);
+	padding: 2rem 2rem;
+	border-radius: 10px;
+}
+
+
+.blog-post-card {
+	background-color: var(--background-blog-card);
+	padding: 2rem 2rem;
+	border-radius: 10px;
+	margin-bottom: 2rem;
+}
+
+blockquote {
+	border: 1px solid #999;
+	color: var(--blockquote-color);
+	background-color: var(--blockquote-background);
+	padding: 2px 0px 2px 20px;
+	margin: 0px;
+	font-family: var(--font-family-serif);
+	font-style: italic;
+	font-size: 1.2em;
+	font-weight: 300;
+}
+
+.astro-code,
+.code-block {
+	background-color: var(--codeblock-color);
+	font-family: var(--font-family-mono);
+	padding: 1rem;
+	border-radius: 5px;
+	/** slight drop shadow and border to make it stand out */
+	box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width : 1020px) {
+	h1 {
+		font-size: 3em;
+	}
+
+	.content h1 {
+		font-size: 2.4em;
+	}
+}
+
+@media (max-width : 480px) {
+	body {
+		font-size: 14px;
+	}
+
+	p,
+	ul,
+	ol {
+		font-size: 1.2rem;
+		margin: 1em 0;
+	}
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: var(--font-family-heading);
+	font-weight: 500;
+}
+
+strong,
+b {
+	font-weight: 400;
+}
+
+textarea {
+	width: 100%;
+	font-size: 16px;
+}
+
+input {
+	font-size: 16px;
+}
+
+content {
+	line-height: 1.6;
+}
+
+table {
+	width: 100%;
+}
+
+img {
+	max-width: 100%;
+	height: auto;
+}
+
+code {
+	padding: 2px 5px;
+	background-color: var(--codeblock-color);
+	font-family: var(--font-family-mono);
+}
+
+pre {
+	padding: 1rem;
+}
+
+pre>code {
+	all: unset;
+}
+
+
+.glow {
+	position: absolute;
+	bottom: -75px;
+	left: -75px;
+	width: 100px;
+	height: 100px;
+	background-color: rgba(80, 30, 80, 0.2);
+	box-shadow: 0 0 150px 150px rgb(80, 30, 80, 0.2);
+	border-radius: 50%;
+}
+
+.mouse-pointer {
+	position: absolute;
+	z-index: 100;
+	bottom: 175px;
+	left: 50%;
+	width: 5px;
+	height: 5px;
+	background-color: rgba(80, 30, 80, 0.6);
+	box-shadow: 0 0 30px 30px rgb(80, 30, 80, 0.3);
+	border-radius: 50%;
+	animation: mouse-pointer-pulse 3s ease-in-out infinite;
+}
+
+@keyframes mouse-pointer-pulse {
+	0% {
+		box-shadow: 0 0 10px 10px rgb(80, 30, 80, 0.1);
+	}
+
+	50% {
+		box-shadow: 0 0 20px 20px rgb(80, 30, 80, 0.2);
+	}
+
+	100% {
+		box-shadow: 0 0 10px 10px rgb(80, 30, 80, 0.1);
+	}
+}

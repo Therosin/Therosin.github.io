@@ -1,0 +1,25 @@
+---
+const props = Astro.props;
+const { username = 'astro', show_icons = true, hide_title = false, hide_border = false, theme = 'default', allCommits = true, showPrivate = true, card_width="500" } = props;
+const statsImage = `https://github-readme-stats.vercel.app/api?username=${username}&show_icons=${show_icons}&theme=${theme}&hide_border=${hide_border}&hide_title=${hide_title}&include_all_commits=${allCommits}&count_private=${showPrivate}&card_width=${card_width}`;
+---
+<!-- GitHub statistics -->
+<div class="github-card">
+    <img src={statsImage} alt="GitHub stats">
+</div>
+
+<style lang="scss" scoped>
+.github-card {
+    margin: 0 auto;
+    max-width: 600px;
+    padding: 0 1rem;
+    text-align: center;
+    width: 100%;
+    &__title {
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin: 0;
+        padding: 1rem 0;
+    }
+}
+</style>
