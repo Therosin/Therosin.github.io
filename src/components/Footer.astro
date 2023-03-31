@@ -1,0 +1,29 @@
+---
+const today = new Date();
+---
+<footer>
+	<div class="copy-text left-side">
+		<span><i>Design by SvalTek &copy; {today.getFullYear()}.</i></span>
+	</div>
+	<div class="glow"></div>
+</footer>
+
+<style>
+	footer {
+		display: inline-flexbox;
+		flex-direction: column;
+		position: fixed;
+		bottom: 0;
+		left: 1rem;
+		right: 1rem;
+		width: calc(100% - 2rem);
+		height: 2rem;
+	}
+
+	footer .copy-text {
+		display: inline-flex;
+		position: absolute;
+		bottom: 0;
+		font-size: 1em;
+	}
+</style>

@@ -1,0 +1,33 @@
+{
+  "name": "svaltek.portfolio",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "clean": "npx rimraf .astro .cache dist node_modules",
+    "test": "echo \"no test specified\" && exit 0"
+  },
+  "dependencies": {
+    "@astrojs/mdx": "^0.17.2",
+    "@astrojs/partytown": "^1.2.0",
+    "@astrojs/rss": "^2.3.2",
+    "@astrojs/sitemap": "^1.2.1",
+    "@astrojs/vue": "^2.1.0",
+    "@nanostores/persistent": "^0.7.0",
+    "@nanostores/vue": "^0.7.0",
+    "accessible-astro-components": "^1.6.6",
+    "astro": "^2.1.9",
+    "nanostores": "^0.7.4",
+    "reading-time": "^1.5.0",
+    "vue": "^3.2.47"
+  },
+  "devDependencies": {
+    "prettier": "^2.8.7",
+    "prettier-plugin-astro": "^0.8.0",
+    "sass": "^1.60.0"
+  }
+}

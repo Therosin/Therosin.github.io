@@ -1,0 +1,15 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+
+// props
+ const props = Astro.props;
+ const { fullwidth } = props;
+ const mainClass = fullwidth ? "content-full" : "content-boxed"
+---
+<BaseLayout>
+	<main class={mainClass}>
+		<div class="content">
+			<slot />
+		</div>
+	</main>
+</BaseLayout>
