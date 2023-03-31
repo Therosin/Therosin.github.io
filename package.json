@@ -12,7 +12,7 @@
     "test": "echo \"no test specified\" && exit 0"
   },
   "dependencies": {
-    "@astrojs/mdx": "^0.17.2",
+    "@astrojs/mdx": "^0.18.2",
     "@astrojs/partytown": "^1.2.0",
     "@astrojs/rss": "^2.3.2",
     "@astrojs/sitemap": "^1.2.1",
