@@ -29,7 +29,7 @@ jobs:
         run: npm install
 
       - name: Generate
-        run: npm run buld
+        run: npm run build
 
       - name: Fix gh-pages CNAME
         run: cp CNAME dist/CNAME
