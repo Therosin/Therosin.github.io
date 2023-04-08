@@ -1,0 +1,32 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+type Props = HTMLAttributes<"iframe"> & {
+    altText: string;
+};
+
+const { id, class: className, altText, ...props } = Astro.props;
+---
+
+<!-- Simple full width iframe wrapper -->
+<div class="ExternalWrapper">
+    <iframe allowfullscreen {...props}>
+        {{ altText }}
+    </iframe>
+</div>
+
+<style>
+    .ExternalWrapper {
+        position: relative;
+        width: 100%;
+        padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+    }
+
+    .ExternalWrapper iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+</style>

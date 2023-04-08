@@ -15,12 +15,13 @@
 
 :root {
 	--max-height: 100svh;
-	--boxed-content-width: 125ch;
+	--boxed-content-width: 85rem;
 	--primary-color: #0c8ce9;
 	--secondary-color: #87c5b7;
 	--tertiary-color: #ff7e33;
 	--background-nav: #3e4165;
 	--background-body: #3d3949;
+	--background-overlay: #0e0e10c2;
 	--background-content: #333637;
 	--background-blog-card: #49435a44;
 	--text-main: #F2F3F4;
@@ -42,7 +43,7 @@ body {
 	font-family: var(--font-family-sans);
 	margin: auto;
 	padding: 20px;
-	max-width: 90vw;
+	max-width: 95vw;
 	min-height: 100svh;
 	text-align: left;
 	background-color: var(--background-body);
@@ -53,14 +54,9 @@ body {
 	transition: background-color 0.8s ease, color 0.8s ease;
 }
 
-.left-side {
-	margin-left: 0;
-	margin-right: auto;
-}
-
-.right-side {
-	margin-left: auto;
-	margin-right: 0;
+a {
+	color: var(--text-link);
+	text-decoration: none;
 }
 
 .sticky-top {
@@ -73,18 +69,8 @@ body {
 	bottom: 2rem;
 }
 
-a {
-	color: var(--text-link);
-	text-decoration: none;
-}
-
-a:hover::before,
-.selected::before {
-	transform: scaleX(1);
-}
-
-.selected::before {
-	background: var(--primary-color);
+.content {
+	line-height: 1.6;
 }
 
 .content-boxed {
@@ -110,14 +96,6 @@ a:hover::before,
 	border-radius: 10px;
 }
 
-
-.blog-post-card {
-	background-color: var(--background-blog-card);
-	padding: 2rem 2rem;
-	border-radius: 10px;
-	margin-bottom: 2rem;
-}
-
 blockquote {
 	border: 1px solid #999;
 	color: var(--blockquote-color);
@@ -136,68 +114,7 @@ blockquote {
 	font-family: var(--font-family-mono);
 	padding: 1rem;
 	border-radius: 5px;
-	/** slight drop shadow and border to make it stand out */
 	box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-@media (max-width : 1020px) {
-	h1 {
-		font-size: 3em;
-	}
-
-	.content h1 {
-		font-size: 2.4em;
-	}
-}
-
-@media (max-width : 480px) {
-	body {
-		font-size: 14px;
-	}
-
-	p,
-	ul,
-	ol {
-		font-size: 1.2rem;
-		margin: 1em 0;
-	}
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-	font-family: var(--font-family-heading);
-	font-weight: 500;
-}
-
-strong,
-b {
-	font-weight: 400;
-}
-
-textarea {
-	width: 100%;
-	font-size: 16px;
-}
-
-input {
-	font-size: 16px;
-}
-
-content {
-	line-height: 1.6;
-}
-
-table {
-	width: 100%;
-}
-
-img {
-	max-width: 100%;
-	height: auto;
 }
 
 code {
@@ -205,15 +122,6 @@ code {
 	background-color: var(--codeblock-color);
 	font-family: var(--font-family-mono);
 }
-
-pre {
-	padding: 1rem;
-}
-
-pre>code {
-	all: unset;
-}
-
 
 .glow {
 	position: absolute;

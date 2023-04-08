@@ -18,7 +18,9 @@
 -->
 <template>    
       <div class="tag-badge">
-        <span class="tag-label">{{ tag }}</span>
+        <span class="tag-label">
+          <a :href="href">{{ tag }}</a>
+        </span>
       </div>
 </template>
   
@@ -30,7 +32,7 @@
       border-radius: 20px;
     }
   
-    .tag-label {
+    .tag-label, a {
       color: #2f2b43;
       font-size: 14px;
       font-weight: 500;
@@ -46,6 +48,10 @@
       name: 'TagBadge',
       props: {
         tag: String,
+        href: {
+          type: String,
+          default: '#',
+        }
       },
     };
   </script>

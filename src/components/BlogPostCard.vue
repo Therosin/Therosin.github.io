@@ -36,7 +36,7 @@
             <div class="taggroup">
                 <fieldset class="taglist">
                     <legend>Tags</legend>
-                    <TagBadge v-for="tag in tags" :key="tag" :tag="tag" />
+                    <TagBadge v-for="tag in tags" :key="tag" :tag="tag" :href="'/blog/tag/' + tag" />
                 </fieldset>
             </div>
         </div>

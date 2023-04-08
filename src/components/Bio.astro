@@ -1,13 +1,8 @@
 ---
-const { 
-  profileImage = "/placeholder-about.jpg"
-} = Astro.props;
+const { profileImage = "/placeholder-about.jpg" } = Astro.props;
 ---
 
-
-
-
-<div>
+<div class="bio-wrapper">
   <img src={profileImage} alt="About" />
   <slot />
 </div>
@@ -21,13 +16,13 @@ const {
 
   img {
     width: 100px;
-    height: 100px;
     border-radius: 100px;
     display: block;
     margin: 20px;
   }
 
-  p {
-    font-size: 1.125rem;
+  .bio-wrapper {
+    line-height: 1.6;
+    justify-self: start;
   }
 </style>
