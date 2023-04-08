@@ -7,5 +7,11 @@ import partytown from "@astrojs/partytown";
 // https://astro.build/config
 export default defineConfig({
   site: 'https://therosin.github.io',
-  integrations: [vue(), mdx(), partytown(), sitemap()]
+  integrations: [vue(), mdx(), partytown(), sitemap()],
+  output: 'static',
+  build: {
+    assets: 'static',
+    format: 'directory',   
+  },
+  publicDir: 'static',
 });

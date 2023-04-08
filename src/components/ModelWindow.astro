@@ -1,0 +1,125 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+type Props = HTMLAttributes<"a"> & {
+    title: string;
+    caption: string;
+};
+
+const { id, title, caption, href, class: className, ...props } = Astro.props;
+---
+
+<!-- Simple Popover model -->
+<div class="ModelWindow" id={"ModelWindow-" + id} {...props}>
+    <div class="ModelWindow__content">
+        <div class="ModelWindow__header">
+            <slot name="ModelHeader">
+                <h2 class="ModelWindow__title">{title}</h2>
+            </slot>
+            <button class="ModelWindow__close" id={"ModelWindow__close-" + id}>
+                <svg class="ModelWindow__close-icon" viewBox="0 0 24 24">
+                    <path
+                        d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                    ></path>
+                </svg>
+            </button>
+        </div>
+        <div class="ModelWindow__body">
+            <slot>
+                <p>
+                    Popover is a small overlay that opens on top of the page
+                    content.
+                </p>
+            </slot>
+        </div>
+    </div>
+</div>
+
+<!-- Simple Popover trigger -->
+<a
+    class="ModelWindow__trigger"
+    id={"ModelWindow__trigger-" + id}
+    onclick={"showModel('" + id + "');"}>{caption}</a
+>
+
+<script lang="ts">
+    function showModel(id) {
+        const model = document.getElementById(`ModelWindow-${id}`);
+        const trigger = document.getElementById(`ModelWindow__trigger-${id}`);
+        const close = document.getElementById(`ModelWindow__close-${id}`);
+
+        model?.classList.toggle("ModelWindow--open");
+        trigger?.classList.toggle("ModelWindow__trigger--open");
+        close?.addEventListener("click", () => {
+            model?.classList.remove("ModelWindow--open");
+            trigger?.classList.remove("ModelWindow__trigger--open");
+        });
+    }
+</script>
+
+<style scoped>
+    .ModelWindow {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: var(--background-overlay);
+        z-index: 100;
+    }
+    .ModelWindow--open {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .ModelWindow__header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 1.5rem;
+        border-bottom: 1px solid var(--secondary-color);
+    }
+
+    .ModelWindow__trigger {
+        display: inline-block;
+        text-decoration: none;
+        padding-bottom: 1px;
+        cursor: pointer;
+    }
+
+    .ModelWindow__title {
+        font-size: 1.5rem;
+        font-weight: 500;
+        margin: 0;
+    }
+    .ModelWindow__close {
+        border: none;
+        background: none;
+        cursor: pointer;
+        padding: 5px;
+        margin-left: 2rem;
+        font-size: 1.5rem;
+    }
+    .ModelWindow__close-icon {
+        width: 1.5rem;
+        height: 1.5rem;
+        fill: var(--tertiary-color);
+    }
+
+    .ModelWindow__content {
+        display: flex;
+        flex-direction: column;
+        background: var(--background-content);
+        padding: 1.5rem;
+        border-radius: 1rem;
+        width: fit-content;
+        align-items: center;
+        vertical-align: middle;
+    }
+
+    .ModelWindow__body {
+        width: 100%;
+    }
+</style>
