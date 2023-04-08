@@ -1,9 +1,21 @@
 ---
-import Page from "../../layouts/Page.astro";
-import FormattedDate from "../../components/FormattedDate.astro";
-import BlogPostCard from "../../components/BlogPostCard.vue";
-import For from "../../components/For.astro";
+import Page from "../../../layouts/Page.astro";
+import FormattedDate from "../../../components/FormattedDate.astro";
+import BlogPostCard from "../../../components/BlogPostCard.vue";
+import For from "../../../components/For.astro";
 import { CollectionEntry, getCollection } from "astro:content";
+
+export async function getStaticPaths() {
+	const posts = await getCollection('blog');	
+	// create a new array of all possible tags removing duplicates
+	const tags = [...new Set(posts.map((post) => post.data.tags).flat())];
+	return tags.map((tag) => ({
+		params: { tag },
+		props: { tag },
+	}));
+}
+
+const { tag } = Astro.props;
 
 const posts = (await getCollection("blog"))
 	.filter((post) => post.data.isDraft === false)
@@ -24,13 +36,14 @@ type Post = CollectionEntry<"blog">;
 			<h3>Posts:</h3>
 		</div>
 		<div class="blog-list-header-filtered">
-			<p>Viewing all posts</p>
+			<p>Viewing articles tagged with: <span class="tag-filter">{tag}</span></p>
 		</div>
 	</div>
 	<section>
 		<For each={posts}>
 			{
 				(post: Post) => {
+					if (!post.data.tags.includes(tag)) return;
 
 					return (
 						<BlogPostCard url={`/blog/post/${post.slug}/`} tags={post.data.tags} >
@@ -53,7 +66,6 @@ type Post = CollectionEntry<"blog">;
 </Page>
 
 
-
 <style lang="scss" scoped>
 	.blog-list-header {
 		display: flex;
@@ -73,6 +85,9 @@ type Post = CollectionEntry<"blog">;
 		max-width: 40%;
 		flex-direction: column;
 		justify-content: center;
+	}
+	.tag-filter {
+		color: var(--color-primary);
 	}
 	
 </style>
