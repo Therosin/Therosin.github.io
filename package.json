@@ -14,7 +14,7 @@
   "dependencies": {
     "@astrojs/mdx": "^0.18.2",
     "@astrojs/partytown": "^1.2.0",
-    "@astrojs/rss": "^2.3.2",
+    "@astrojs/rss": "^2.4.1",
     "@astrojs/sitemap": "^1.2.2",
     "@astrojs/vue": "^2.1.1",
     "@nanostores/persistent": "^0.7.0",
