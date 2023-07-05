@@ -24,7 +24,7 @@
       </div>
 </template>
   
-  <style scoped>  
+  <style>  
     .tag-badge {
       padding: 0px 8px 0px 8px;
       overflow: hidden;
