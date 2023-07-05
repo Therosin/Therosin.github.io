@@ -1,0 +1,78 @@
+---
+import Page from "../../layouts/Page.astro";
+import FormattedDate from "../../components/FormattedDate.astro";
+import ProjectCard from "../../components/ProjectCard.astro";
+import For from "../../components/For.astro";
+import { CollectionEntry, getCollection } from "astro:content";
+
+const projects = (await getCollection("project"))
+	.filter((project) => project.data.isDraft === false)
+	.sort((a, b) => {
+		const aData = a.data;
+		const bData = b.data;
+		const aDate = (aData.updatedDate || aData.pubDate).valueOf();
+		const bDate = (bData.updatedDate || bData.pubDate).valueOf();
+		return bDate - aDate;
+	});
+
+type Project = CollectionEntry<"project">;
+---
+
+<Page>
+	<div class="project-list-header">
+		<div class="project-list-header-content">
+			<h3>Projects:</h3>
+		</div>
+		<div class="project-list-header-filtered">
+			<p>Viewing all projects</p>
+		</div>
+	</div>
+	<section>
+		<For each={projects}>
+			{
+				(project: Project) => {
+
+					return (
+						<ProjectCard url={`/projects/page/${project.slug}/`} tags={project.data.tags} >
+							<h2 slot="project-title">{project.data.title}</h2>
+							<p slot="project-date">
+								<FormattedDate date={project.data.pubDate} />
+							</p>
+							<p slot="project-description">{project.data.description}</p>
+							<img
+								slot="project-image"
+								src={project.data.heroImage}
+								class="card-thumbnail"
+							/>
+						</ProjectCard>
+					)
+				}
+			}
+		</For>
+	</section>
+</Page>
+
+
+
+<style lang="scss" scoped>
+	.project-list-header {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		padding: 1rem 0;
+		border-bottom: 1px solid var(--primary-color);
+	}
+	.project-list-header-content {
+		display: flex;
+		max-width: 60%;
+		flex-direction: column;
+		justify-content: center;
+	}
+	.project-list-header-filtered {
+		display: flex;
+		max-width: 40%;
+		flex-direction: column;
+		justify-content: center;
+	}
+	
+</style>

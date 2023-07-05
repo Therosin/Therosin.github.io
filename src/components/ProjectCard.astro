@@ -1,0 +1,127 @@
+---
+import For from "./For.astro";
+import TagBadge from "./TagBadge.vue";
+
+const { tags, url } = Astro.props;
+---
+
+<div class="project-card">
+    <div class="project-card-content">
+        <div class="project-card-date">
+            <slot name="project-date" />
+        </div>
+        <div class="project-card-title">
+            <slot name="project-title" />
+        </div>
+        <slot name="project-description" />
+        <!-- read more button -->
+        <span class="read-more-button">
+            <a href={url}>Read More</a>
+        </span>
+    </div>
+    <div class="project-card-meta">
+        <slot name="project-image" />
+        <div class="taggroup">
+            <fieldset class="taglist">
+                <legend>Tags</legend>
+                <For each={tags}>
+                    {
+                        (tag: string) => {
+                            return (
+                                <TagBadge
+                                    tag={tag}
+                                    href={`/projects/tag/${tag}`}
+                                />
+                            );
+                        }
+                    }
+                </For>
+            </fieldset>
+        </div>
+    </div>
+</div>
+
+<style lang="sass" scoped>
+    .project-card
+        display: flex
+        flex-direction: row
+        min-width: 600px
+        max-width: 1000px
+        min-height: 250px
+        position: relative
+        border-color: #3f486050
+        border-style: solid
+        border-width: 1px
+        border-radius: 10px
+        margin: 0 auto
+        margin-bottom: 1ch
+        padding: 10px
+
+    .project-card-title
+        font-size: 18px
+        font-weight: 300
+        font-family: Montserrat
+        text-align: left
+
+    .project-card:hover
+        border-color: #37adff
+
+    .project-card-date
+        flex-direction: row
+        color: #6a738b
+        font-size: 16px
+        font-weight: 400
+        font-family: Montserrat
+        text-align: left
+        width: 100%
+
+    .project-card-content
+        flex-direction: row
+        width: 70%
+        min-height: 100%
+        border-right: 1px solid #3f486050
+
+    .read-more-button
+        // nice light blue 
+        background-color: #328a9d
+        width: 100px
+        display: flex
+        flex-direction: row
+        justify-content: center
+        align-items: center
+        border: 1px solid #3f4860
+        border-radius: 10px
+        padding: 5px
+        position: absolute
+        bottom: 10px
+
+    .read-more-button:hover
+        border: 1px solid #37adff
+
+    .project-card-meta
+        flex-direction: column
+        text-align: right
+        width: 30%
+
+    .taggroup
+        display: flex
+        width: 100%
+
+    .taglist
+        min-width: content
+        display: inline-flex
+        flex-direction: row
+        flex-wrap: wrap
+        vertical-align: middle
+        border: none
+
+    .tag-badge
+        background-color: grey
+        width: content
+        border-radius: 10px
+        margin: 1px
+
+    .tag-badge:hover
+        background: #37adff
+        border-color: #37adff
+</style>
