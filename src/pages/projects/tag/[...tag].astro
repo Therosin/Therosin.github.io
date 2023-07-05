@@ -6,7 +6,7 @@ import For from "../../../components/For.astro";
 import { CollectionEntry, getCollection } from "astro:content";
 
 export async function getStaticPaths() {
-	const projects = await getCollection('project');	
+	const projects = await getCollection('project');
 	// create a new array of all possible tags removing duplicates
 	const tags = [...new Set(projects.map((project) => project.data.tags).flat())];
 	return tags.map((tag) => ({
@@ -89,5 +89,5 @@ type Project = CollectionEntry<"project">;
 	.tag-filter {
 		color: var(--color-primary);
 	}
-	
+
 </style>

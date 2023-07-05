@@ -12,12 +12,13 @@ updatedDate: "July 05 2023"
 isDraft: false
 ---
 
-
 ## Why?
+
 reciently I've found myself working on a lot of small varied projects but using the same tooling, so rather than installing and configuring the same tools over and over again I've been using docker to create a reproducible containers for each project.
 This repository builds a base image with the tools I use most often and some helpful scripts to manage things.
 
 ## What's included?
+
 - [x] [git](https://git-scm.com/) - Version control
 - [x] [build-essential](https://packages.ubuntu.com/bionic/build-essential) - Build tools
   - also includes cmake etc.
