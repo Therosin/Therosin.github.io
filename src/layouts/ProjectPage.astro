@@ -1,0 +1,129 @@
+---
+import type { CollectionEntry } from "astro:content";
+import BaseLayout from "./BaseLayout.astro";
+import FormattedDate from "../components/FormattedDate.astro";
+
+type Props = CollectionEntry<"project">["data"];
+
+const {
+	title,
+	description,
+	hideDescription,
+	pubDate,
+	updatedDate,
+	heroImage,
+	imageSize,
+	hideTitle,
+	showMeta,
+} = Astro.props;
+
+let width = "100%";
+let height = "auto";
+
+if (imageSize) {
+	const isPercent = imageSize.endsWith("%");
+	if (isPercent) {
+		width = imageSize;
+		height = "auto";
+	} else {
+		[width, height] = imageSize.split("x").map(String);
+	}
+}
+
+let showHeaderBreak = false;
+if (showMeta || heroImage) {
+	// @ts-ignore
+	showHeaderBreak = true;
+}
+---
+
+<BaseLayout>
+	<main class="content-boxed">
+		<div class="content">
+			{
+				heroImage && (
+					<img
+						src={heroImage}
+						alt={title}
+						width={width}
+						height={height}
+						style="max-width: 100%; margin: 0 auto; display: block;"
+					/>
+				)
+			}
+			<div class="project-head">
+				<div class="project-title">
+					{
+						!hideTitle && (
+							<span class="project-title right-side">{title}</span>
+						)
+					}
+					<br />
+					{
+						!hideDescription && (
+							<span class="project-description">{description}</span>
+						)
+					}
+				</div>
+				<div class="project-meta">
+					{
+						showMeta && (
+							<div class="published-on">
+								Published: <FormattedDate date={pubDate} />
+							</div>
+						)
+					}
+					{
+						showMeta && updatedDate && (
+							<div class="last-updated-on">
+								Last updated on{" "}
+								<FormattedDate date={updatedDate} />
+							</div>
+						)
+					}
+				</div>
+			</div>
+			{ showHeaderBreak && (<hr />)}
+			<article>
+				<slot />
+			</article>
+		</div>
+	</main>
+</BaseLayout>
+
+<style scoped>
+	.project-head {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: flex-start;
+		margin-top: 1rem;
+		gap: 1rem;
+	}
+
+	.project-title {
+		font-weight: bold;
+		font-size: larger;
+	}
+
+	.project-description {
+		font-weight: lighter;
+		font-size: smaller;
+		font-style: oblique;
+	}
+
+	.project-meta {
+		padding-right: 1rem;
+		font-size: smaller;
+	}
+
+	.published-on,
+	.last-updated-on {
+		font-style: italic;
+	}
+
+	hr {
+		border-top: 1px solid var(--primary-color);
+		margin: 1rem 0;
+	}
+</style>

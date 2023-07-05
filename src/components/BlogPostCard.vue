@@ -1,18 +1,18 @@
 <!--
  Copyright (C) 2023 Theros < MisModding | SvalTek >
- 
+
  This file is part of therosin.github.io.
- 
+
  therosin.github.io is free software: you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
  the Free Software Foundation, either version 3 of the License, or
  (at your option) any later version.
- 
+
  therosin.github.io is distributed in the hope that it will be useful,
  but WITHOUT ANY WARRANTY; without even the implied warranty of
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  GNU General Public License for more details.
- 
+
  You should have received a copy of the GNU General Public License
  along with therosin.github.io.  If not, see <http://www.gnu.org/licenses/>.
 -->
@@ -42,16 +42,17 @@
         </div>
     </div>
 </template>
-  
+
 <style lang="sass" scoped>
 
 .blog-post-card
     display: flex
     flex-direction: row
-    min-width: 400px
-    max-width: 900px
+    min-width: 600px
+    max-width: 1000px
+    min-height: 250px
     position: relative
-    border-color: #3f486040
+    border-color: #3f486050
     border-style: solid
     border-width: 1px
     border-radius: 10px
@@ -60,7 +61,7 @@
     padding: 10px
 
 .blog-post-title
-    font-size: 19px
+    font-size: 18px
     font-weight: 300
     font-family: Montserrat
     text-align: left
@@ -81,9 +82,12 @@
 .blog-post-content
     flex-direction: row
     width: 70%
+    min-height: 100%
+    border-right: 1px solid #3f486050
 
 
 .read-more-button
+    background-color: #328a9d
     width: 100px
     display: flex
     flex-direction: row
@@ -92,6 +96,8 @@
     border: 1px solid #3f4860
     border-radius: 10px
     padding: 5px
+    position: absolute
+    bottom: 10px
 
 .read-more-button:hover
     border: 1px solid #37adff
@@ -112,21 +118,19 @@
     flex-direction: row
     flex-wrap: wrap
     vertical-align: middle
-    border: darkgrey 1px solid
+    border: none
 
 .tag-badge
-    background: grey
+    background-color: grey
     width: content
     border-radius: 10px
-    margin-left: 1px
-    margin-right: 1px
+    margin: 1px
 
 .tag-badge:hover
     background: #37adff
     border-color: #37adff
-
 </style>
-  
+
 <script lang="ts">
 import TagBadge from './TagBadge.vue';
 
@@ -146,4 +150,3 @@ export default {
     },
 };
 </script>
-  

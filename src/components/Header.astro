@@ -54,8 +54,8 @@ const { title, description, image = "/placeholder-social.jpg" } = Astro.props;
 		<nav class="right-side">
 			<section class="nav-section">
 				<HeaderLink href="/">Home</HeaderLink>
-				<!-- <HeaderLink href="/projects">Projects</HeaderLink> -->
 				<HeaderLink href="/blog">Blog</HeaderLink>
+				<HeaderLink href="/projects">Projects</HeaderLink>
 			</section>
 		</nav>
 	</div>
@@ -86,8 +86,8 @@ const { title, description, image = "/placeholder-social.jpg" } = Astro.props;
 		align-items: center;
 		display: flex;
 		flex: 1;
-		font-family: var(--font-family-sans);
-		font-weight: 700;
+		font-family: var(--font-family-sans) !important;
+		font-weight: 700 !important;
 		justify-content: flex-end;
 		text-transform: uppercase;
 		text-align: center;
