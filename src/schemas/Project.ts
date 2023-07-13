@@ -34,6 +34,7 @@ export default defineCollection({
 			.transform((str) => (str ? new Date(str) : undefined)),
 		heroImage: z.string().optional(),
 		imageSize: z.string().optional(),
+		enableComments: z.boolean().optional().default(true),
 		isDraft: z.boolean()
 			.optional()
 			.default(false),

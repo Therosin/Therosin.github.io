@@ -1,0 +1,37 @@
+---
+import Show from "./Show.astro";
+
+export interface Props {
+    title: string;
+    img?: string;
+    alt?: string;
+    btnLink?: string;
+    btnText?: string;
+    style?: string;
+}
+
+const {
+    title,
+    img,
+    alt,
+    btnLink,
+    btnText = "Ok",
+    style = "width: 18rem;",
+} = Astro.props;
+---
+
+<div class="card" style={style}>
+    <Show when={img}>
+        <img src={img} class="card-img-top" alt={alt} />
+    </Show>
+    <div class="card-body">
+        <h5 class="card-title">{title}</h5>
+        <slot />
+    </div>
+
+    <Show when={btnLink}>
+        <div class="card-footer">
+            <a href={btnLink} class="btn btn-primary float-end">{btnText}</a>
+        </div>
+    </Show>
+</div>

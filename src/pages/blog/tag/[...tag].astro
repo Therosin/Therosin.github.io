@@ -4,6 +4,7 @@ import FormattedDate from "../../../components/FormattedDate.astro";
 import BlogPostCard from "../../../components/BlogPostCard.vue";
 import For from "../../../components/For.astro";
 import { CollectionEntry, getCollection } from "astro:content";
+import PageMeta from "@components/PageMeta.astro";
 
 export async function getStaticPaths() {
 	const posts = await getCollection('blog');	
@@ -30,6 +31,10 @@ const posts = (await getCollection("blog"))
 type Post = CollectionEntry<"blog">;
 ---
 
+<PageMeta
+	title={`Blog Posts Tagged: ${tag}`}
+	description={`Blog Posts Tagged: ${tag}`}
+/>
 <Page>
 	<div class="blog-list-header">
 		<div class="blog-list-header-content">

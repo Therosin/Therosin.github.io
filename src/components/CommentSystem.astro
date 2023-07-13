@@ -1,0 +1,27 @@
+---
+import { SITE_REPO } from "../consts";
+
+export interface Props {
+    repo?: string;
+    label?: string;
+    issueTerm?: string;
+    theme?: string;
+}
+
+const {
+    repo = SITE_REPO,
+    label = "comment",
+    issueTerm = "pathname",
+    theme = "github-dark-orange",
+} = Astro.props;
+---
+
+<script
+    src="https://utteranc.es/client.js"
+    repo={ repo }
+    issue-term={ issueTerm }
+    label={ label }
+    theme={ theme }
+    crossorigin="anonymous"
+    async>
+</script>

@@ -1,5 +1,8 @@
 ---
 import BaseLayout from "./BaseLayout.astro";
+export interface Props {
+	fullwidth?: boolean;
+}
 
 // props
  const props = Astro.props;
@@ -11,5 +14,6 @@ import BaseLayout from "./BaseLayout.astro";
 		<div class="content">
 			<slot />
 		</div>
+		
 	</main>
 </BaseLayout>
