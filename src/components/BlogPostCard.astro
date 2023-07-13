@@ -5,22 +5,22 @@ import TagBadge from "./TagBadge.vue";
 const { tags, url } = Astro.props;
 ---
 
-<div class="project-card">
-    <div class="project-card-content">
-        <div class="project-card-date">
-            <slot name="project-date" />
+<div class="blog-post-card">
+    <div class="blog-post-content">
+        <div class="blog-post-date">
+            <slot name="post-date" />
         </div>
-        <div class="project-card-title">
-            <slot name="project-title" />
+        <div class="blog-post-title">
+            <slot name="post-title" />
         </div>
-        <slot name="project-description" />
+        <slot name="post-description" />
         <!-- read more button -->
         <span class="read-more-button">
             <a href={url}>Read More</a>
         </span>
     </div>
-    <div class="project-card-meta">
-        <slot name="project-image" />
+    <div class="blog-post-meta">
+        <slot name="post-image" />
         <div class="taggroup">
             <fieldset class="taglist">
                 <legend>Tags</legend>
@@ -28,11 +28,11 @@ const { tags, url } = Astro.props;
                     {
                         (tag: string) => {
                             return (
-                                <TagBadge
-                                    tag={tag}
-                                    href={`/projects/tag/${tag}`}
-                                />
-                            );
+                            <TagBadge
+                                tag={tag}
+                                href={`/blog/tag/${tag}`}
+                            />
+                            )
                         }
                     }
                 </For>
@@ -42,7 +42,7 @@ const { tags, url } = Astro.props;
 </div>
 
 <style lang="sass">
-    .project-card
+    .blog-post-card
         display: flex
         flex-direction: row
         min-width: 600px
@@ -57,16 +57,16 @@ const { tags, url } = Astro.props;
         margin-bottom: 1ch
         padding: 10px
 
-    .project-card-title
+    .blog-post-title
         font-size: 18px
         font-weight: 300
         font-family: Montserrat
         text-align: left
 
-    .project-card:hover
+    .blog-post-card:hover
         border-color: #37adff
 
-    .project-card-date
+    .blog-post-date
         flex-direction: row
         color: #6a738b
         font-size: 16px
@@ -75,14 +75,13 @@ const { tags, url } = Astro.props;
         text-align: left
         width: 100%
 
-    .project-card-content
+    .blog-post-content
         flex-direction: row
         width: 70%
         min-height: 100%
         border-right: 1px solid #3f486050
 
     .read-more-button
-        // nice light blue
         background-color: #328a9d
         width: 100px
         display: flex
@@ -94,10 +93,7 @@ const { tags, url } = Astro.props;
         padding: 5px
         position: absolute
         bottom: 10px
-
-    .read-more-button:hover
-        border: 1px solid #37adff
-
+    
     .read-more-button a
         color: black
         font-size: 14px
@@ -105,7 +101,10 @@ const { tags, url } = Astro.props;
         font-family: Montserrat
         text-decoration: none
 
-    .project-card-meta
+    .read-more-button:hover
+        border: 1px solid #37adff
+
+    .blog-post-meta
         flex-direction: column
         text-align: right
         width: 30%
