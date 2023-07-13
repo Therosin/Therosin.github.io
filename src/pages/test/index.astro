@@ -1,0 +1,56 @@
+---
+import Post from "@layouts/BlogPost.astro";
+import PageMeta from "@components/PageMeta.astro";
+import Card from "@components/Card.astro";
+import type { Props as CardType } from "@components/Card.astro";
+import { Markdown } from '@astropub/md';
+
+interface Card {
+	card: CardType;
+	content: string;
+}
+
+const cards: Card[] = [
+	{
+		card: {
+			title: "About",
+			btnLink: "/about"
+		},
+		content: "## Test\n _Hello_ **World**",
+	}
+];
+---
+
+<PageMeta title="Home" description="Therosin's portfolio." />
+<Post
+	title="Welcome"
+	showMeta={false}
+	hideTitle={true}
+	description="Therosin's portfolio."
+	hideDescription={true}
+	tags={["about"]}
+	pubDate={new Date("March 31 2023")}
+	updatedDate={new Date("March 31 2023")}
+	imageSize="600"
+	isDraft={false}
+>
+	<section class="page-header">
+		<div class="container">
+			<div class="row row-cols-1 row-cols-md-3">
+				{
+					cards.map((card) => (
+						<div class="col">
+							<Card {...card.card}>
+								<Markdown.Inline of={card.content} />
+							</Card>
+						</div>
+					))
+				}
+			</div>
+		</div>
+	</section>
+
+	<section class="page-content"></section>
+</Post>
+
+<style lang="scss" scoped></style>
