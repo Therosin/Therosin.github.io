@@ -1,7 +1,7 @@
 ---
 import Page from "../../layouts/Page.astro";
 import FormattedDate from "../../components/FormattedDate.astro";
-import BlogPostCard from "../../components/BlogPostCard.vue";
+import BlogPostCard from "../../components/BlogPostCard.astro";
 import For from "../../components/For.astro";
 import { CollectionEntry, getCollection } from "astro:content";
 import PageMeta from "@components/PageMeta.astro";
@@ -79,5 +79,22 @@ type Post = CollectionEntry<"blog">;
 		flex-direction: column;
 		justify-content: center;
 	}
+
+	.tag-badge {
+      padding: 0px 8px 0px 8px;
+      overflow: hidden;
+      background: rgba(118, 122, 134, 0.15);
+      border-radius: 20px;
+    }
+
+    .tag-label a {
+      color: #a8a5b3;
+      font-size: 14px;
+      font-weight: 500;
+      font-family: Inter;
+      line-height: 20px;
+      text-align: CENTER;
+      letter-spacing: -0.01em;
+    }
 	
 </style>
