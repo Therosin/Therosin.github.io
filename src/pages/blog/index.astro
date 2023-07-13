@@ -4,6 +4,7 @@ import FormattedDate from "../../components/FormattedDate.astro";
 import BlogPostCard from "../../components/BlogPostCard.vue";
 import For from "../../components/For.astro";
 import { CollectionEntry, getCollection } from "astro:content";
+import PageMeta from "@components/PageMeta.astro";
 
 const posts = (await getCollection("blog"))
 	.filter((post) => post.data.isDraft === false)
@@ -17,6 +18,10 @@ const posts = (await getCollection("blog"))
 
 type Post = CollectionEntry<"blog">;
 ---
+<PageMeta
+	title="Blog"
+	description="My latest blog posts"
+/>
 
 <Page>
 	<div class="blog-list-header">

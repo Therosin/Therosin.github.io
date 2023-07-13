@@ -1,6 +1,7 @@
 ---
 import { CollectionEntry, getCollection } from 'astro:content';
 import BlogPost from '../../../layouts/BlogPost.astro';
+import PageMeta from '@components/PageMeta.astro';
 
 export async function getStaticPaths() {
 	const posts = await getCollection('blog');
@@ -14,6 +15,12 @@ type Props = CollectionEntry<'blog'>;
 const post = Astro.props;
 const { Content } = await post.render();
 ---
+
+<PageMeta
+	title={post.data.title}
+	description={post.data.description}
+	image={post.data.heroImage}
+/>
 
 <BlogPost {...post.data}>
 	<Content />

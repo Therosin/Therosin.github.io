@@ -4,6 +4,7 @@ import FormattedDate from "../../components/FormattedDate.astro";
 import ProjectCard from "../../components/ProjectCard.astro";
 import For from "../../components/For.astro";
 import { CollectionEntry, getCollection } from "astro:content";
+import PageMeta from "@components/PageMeta.astro";
 
 const projects = (await getCollection("project"))
 	.filter((project) => project.data.isDraft === false)
@@ -16,9 +17,12 @@ const projects = (await getCollection("project"))
 	});
 
 type Project = CollectionEntry<"project">;
+
 ---
 
-<Page>
+<PageMeta title="Projects" description="A list of all my projects" />
+
+<Page fullwidth={true}>
 	<div class="project-list-header">
 		<div class="project-list-header-content">
 			<h3>Projects:</h3>
@@ -27,32 +31,43 @@ type Project = CollectionEntry<"project">;
 			<p>Viewing all projects</p>
 		</div>
 	</div>
+	<br />
 	<section>
-		<For each={projects}>
-			{
-				(project: Project) => {
-
-					return (
-						<ProjectCard url={`/projects/page/${project.slug}/`} tags={project.data.tags} >
-							<h2 slot="project-title">{project.data.title}</h2>
-							<p slot="project-date">
-								<FormattedDate date={project.data.pubDate} />
-							</p>
-							<p slot="project-description">{project.data.description}</p>
-							<img
-								slot="project-image"
-								src={project.data.heroImage}
-								class="card-thumbnail"
-							/>
-						</ProjectCard>
-					)
+		<div class="row row-cols-2 row-cols-md-6">
+			<For each={projects}>
+				{
+					(project: Project) => {
+						return (
+							<div class="col">
+								<ProjectCard
+									url={`/projects/page/${project.slug}/`}
+									tags={project.data.tags}
+								>
+									<h2 slot="project-title">
+										{project.data.title}
+									</h2>
+									<p slot="project-date">
+										<FormattedDate
+											date={project.data.pubDate}
+										/>
+									</p>
+									<p slot="project-description">
+										{project.data.description}
+									</p>
+									<img
+										slot="project-image"
+										src={project.data.heroImage}
+										class="card-thumbnail"
+									/>
+								</ProjectCard>
+							</div>
+						);
+					}
 				}
-			}
-		</For>
+			</For>
+		</div>
 	</section>
 </Page>
-
-
 
 <style lang="scss" scoped>
 	.project-list-header {
@@ -74,5 +89,4 @@ type Project = CollectionEntry<"project">;
 		flex-direction: column;
 		justify-content: center;
 	}
-
 </style>

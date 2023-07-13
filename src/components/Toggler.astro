@@ -1,0 +1,86 @@
+---
+export interface Props {
+	open?: boolean;
+	open_text?: string;
+	closed_text?: string;
+}
+
+const {
+	open = false,
+	open_text = "collapsed",
+	closed_text = "expanded",
+} = Astro.props;
+---
+
+<toggler open={open ? "" : undefined}>
+	<div class="toggle">
+		<a>{open ? "[-] open" : "[+] collapsed"}</a>
+	</div>
+	<ul class="toggler-children">
+		<slot />
+	</ul>
+</toggler>
+
+<style>
+	toggler[open] > .toggle {
+		padding: 0;
+		background-color: transparent;
+		margin-bottom: -0.5em;
+	}
+
+	toggler:not([open]) > .toggle {
+		background-color: rgb(255 247 237);
+	}
+	toggler:not([open]) ul {
+		display: none;
+	}
+
+	.toggle {
+		font-size: 0.9em;
+		margin: 1em 0;
+		padding: 0.3em 0.5em;
+		border-radius: 4px;
+	}
+
+	a {
+		color: rgb(51 65 85);
+		cursor: pointer;
+	}
+</style>
+
+<script>
+	const { open_text, closed_text } = Astro.props;
+
+	class Toggler extends HTMLElement {
+		#btn = this.querySelector<HTMLAnchorElement>("a")!;
+		#toggleOpen = this.toggleOpen.bind(this);
+
+		connectedCallback() {
+			this.#btn.addEventListener("click", this.#toggleOpen, false);
+		}
+
+		disconnectedCallback() {
+			this.#btn.addEventListener("click", this.#toggleOpen);
+		}
+
+		get open() {
+			return this.hasAttribute("open");
+		}
+
+		set open(value: boolean) {
+			if (value) {
+				this.setAttribute("open", "");
+				this.#btn.textContent = `[-] ${open_text || `open`}`;
+			} else {
+				this.removeAttribute("open");
+				this.#btn.textContent = `[+] ${closed_text || `collapsed`}`;
+			}
+		}
+
+		toggleOpen() {
+			this.open = !this.open;
+		}
+	}
+
+	customElements.define("toggler", Toggler);
+</script>

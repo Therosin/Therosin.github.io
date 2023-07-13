@@ -4,8 +4,12 @@ import GitHubStats from "@components/GitHubStats.astro";
 import Post from "../layouts/BlogPost.astro";
 import ModelWindow from "@components/ModelWindow.astro";
 import ExternalContent from "@components/ExternalContent.astro";
+import PageMeta from "@components/PageMeta.astro";
 ---
-
+<PageMeta
+	title="Home"
+	description="Therosin's portfolio."
+/>
 <Post
 	title="Welcome"
 	showMeta={false}
@@ -16,6 +20,7 @@ import ExternalContent from "@components/ExternalContent.astro";
 	pubDate={new Date("March 31 2023")}
 	updatedDate={new Date("March 31 2023")}
 	imageSize="600"
+	enableComments={false}
 	isDraft={false}
 >
 	<section class="about-wrapper">
