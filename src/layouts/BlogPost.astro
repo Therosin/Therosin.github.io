@@ -2,6 +2,7 @@
 import type { CollectionEntry } from "astro:content";
 import BaseLayout from "./BaseLayout.astro";
 import FormattedDate from "../components/FormattedDate.astro";
+import CommentSystem from "@components/CommentSystem.astro";
 
 type Props = CollectionEntry<"blog">["data"];
 
@@ -15,6 +16,7 @@ const {
 	imageSize,
 	hideTitle,
 	showMeta,
+	enableComments,
 } = Astro.props;
 
 let width = "100%";
@@ -87,6 +89,12 @@ if (showMeta || heroImage) {
 			<article>
 				<slot />
 			</article>
+			{
+				enableComments && (
+					<hr />
+					<CommentSystem label="post-comment" />
+				)
+			}
 		</div>
 	</main>
 </BaseLayout>

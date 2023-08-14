@@ -12,6 +12,7 @@
 @import url(https://fonts.googleapis.com/css?family=Montserrat:100,200,300,regular,500,600,700,800,900,100italic,200italic,300italic,italic,500italic,600italic,700italic,800italic,900italic);
 /** Proza Libre, used for quotes */
 @import url(https://fonts.googleapis.com/css?family=Proza+Libre:regular,italic,500,500italic,600,600italic,700,700italic,800,800italic);
+@import 'bootstrap/dist/css/bootstrap.css';
 
 :root {
 	--max-height: 100svh;
@@ -54,11 +55,6 @@ body {
 	transition: background-color 0.8s ease, color 0.8s ease;
 }
 
-a {
-	color: var(--text-link);
-	text-decoration: none;
-}
-
 .sticky-top {
 	position: sticky;
 	top: 2rem;
@@ -95,6 +91,16 @@ a {
 	padding: 2rem 2rem;
 	border-radius: 10px;
 }
+
+.hidden {
+	display: none;
+}
+
+a {
+	color: var(--text-link);
+	text-decoration: none;
+}
+
 
 blockquote {
 	border: 1px solid #999;

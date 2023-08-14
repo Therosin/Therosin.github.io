@@ -1,6 +1,7 @@
 ---
 import { CollectionEntry, getCollection } from 'astro:content';
 import ProjectPage from '../../../layouts/ProjectPage.astro';
+import PageMeta from '@components/PageMeta.astro';
 
 export async function getStaticPaths() {
 	const projects = await getCollection('project');
@@ -14,7 +15,11 @@ type Props = CollectionEntry<'project'>;
 const project = Astro.props;
 const { Content } = await project.render();
 ---
-
+<PageMeta
+	title={project.data.title}
+	description={project.data.description}
+	image={project.data.heroImage}
+/>
 <ProjectPage {...project.data}>
 	<Content />
 </ProjectPage>

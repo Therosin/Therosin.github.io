@@ -24,16 +24,16 @@
       </div>
 </template>
 
-  <style>
+  <style scoped>
     .tag-badge {
       padding: 0px 8px 0px 8px;
       overflow: hidden;
-      background: rgba(63, 72, 96, 0.15);
+      background: rgba(170, 185, 221, 0.15);
       border-radius: 20px;
     }
 
-    .tag-label, a {
-      color: #2f2b43;
+    .tag-label a {
+      color: #17182b;
       font-size: 14px;
       font-weight: 500;
       font-family: Inter;
