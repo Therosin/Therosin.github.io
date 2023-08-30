@@ -23,7 +23,7 @@
     "@popperjs/core": "^2.11.8",
     "@types/bootstrap": "^5.2.6",
     "accessible-astro-components": "^2.1.2",
-    "astro": "^2.10.7",
+    "astro": "^2.10.15",
     "astro-bootstrap": "^0.6.1",
     "bootstrap": "^5.3.1",
     "nanostores": "^0.9.3",
