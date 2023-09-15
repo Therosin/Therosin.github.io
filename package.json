@@ -34,6 +34,6 @@
   "devDependencies": {
     "prettier": "^3.0.1",
     "prettier-plugin-astro": "^0.11.0",
-    "sass": "^1.65.1"
+    "sass": "^1.67.0"
   }
 }
