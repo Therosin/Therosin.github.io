@@ -166,3 +166,11 @@ code {
 		box-shadow: 0 0 10px 10px rgb(80, 30, 80, 0.1);
 	}
 }
+
+/* if body class includes dark-mode */
+body.dark-mode {
+	/* modal text color */
+	modal-text {
+		color: var(--text-main);
+	}
+}

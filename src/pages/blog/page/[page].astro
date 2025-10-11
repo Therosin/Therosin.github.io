@@ -1,0 +1,112 @@
+---
+import BlogPostCard from "@components/BlogPostCard.astro";
+import For from "@components/For.astro";
+import FormattedDate from "@components/FormattedDate.astro";
+import PageMeta from "@components/PageMeta.astro";
+import Pagination from "@components/Pagination.astro";
+import Page from "@layouts/Page.astro";
+import { CollectionEntry, getCollection } from "astro:content";
+
+export async function getStaticPaths({ paginate }) {
+	const pageSize = 5;
+	const posts = (await getCollection("blog"))
+		.filter((post) => post.data.isDraft === false)
+		.sort((a, b) => {
+			const aData = a.data;
+			const bData = b.data;
+			const aDate = (aData.updatedDate || aData.pubDate).valueOf();
+			const bDate = (bData.updatedDate || bData.pubDate).valueOf();
+			return bDate - aDate;
+		});
+
+	return paginate(posts, { pageSize });
+}
+
+const { page } = Astro.props;
+const currentPage = page.currentPage;
+const totalPages = page.lastPage;
+const posts = page.data;
+
+type Post = CollectionEntry<"blog">;
+---
+<PageMeta
+	title={`Blog - Page ${currentPage}`}
+	description="My latest blog posts"
+/>
+
+<Page>
+	<div class="blog-list-header">
+		<div class="blog-list-header-content">
+			<h3>Posts:</h3>
+		</div>
+		<div class="blog-list-header-filtered">
+			<p>Viewing page {currentPage} of {totalPages}</p>
+		</div>
+	</div>
+	<section>
+		<For each={posts}>
+			{
+				(post: Post) => {
+
+					return (
+						<BlogPostCard url={`/blog/post/${post.slug}/`} tags={post.data.tags} >
+							<h2 slot="post-title">{post.data.title}</h2>
+							<p slot="post-date">
+								<FormattedDate date={post.data.pubDate} />
+							</p>
+							<p slot="post-description">{post.data.description}</p>
+							<img
+								slot="post-image"
+								src={post.data.heroImage}
+								class="card-thumbnail"
+							/>
+						</BlogPostCard>
+					)
+				}
+			}
+		</For>
+	</section>
+	<Pagination currentPage={currentPage} totalPages={totalPages} baseUrl="/blog/page/" />
+</Page>
+
+
+
+<style lang="scss" scoped>
+	.blog-list-header {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		padding: 1rem 0;
+		border-bottom: 1px solid var(--primary-color);
+	}
+	.blog-list-header-content {
+		display: flex;
+		max-width: 60%;
+		flex-direction: column;
+		justify-content: center;
+	}
+	.blog-list-header-filtered {
+		display: flex;
+		max-width: 40%;
+		flex-direction: column;
+		justify-content: center;
+	}
+
+	.tag-badge {
+      padding: 0px 8px 0px 8px;
+      overflow: hidden;
+      background: rgba(118, 122, 134, 0.15);
+      border-radius: 20px;
+    }
+
+    .tag-label a {
+      color: #a8a5b3;
+      font-size: 14px;
+      font-weight: 500;
+      font-family: Inter;
+      line-height: 20px;
+      text-align: CENTER;
+      letter-spacing: -0.01em;
+    }
+
+</style>
