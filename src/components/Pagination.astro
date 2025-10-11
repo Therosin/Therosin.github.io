@@ -10,13 +10,13 @@ const { currentPage, totalPages, baseUrl } = Astro.props;
 
 <div class="pagination">
   {currentPage > 1 && (
-    <a href={currentPage === 2 ? "/blog/" : `${baseUrl}${currentPage - 1}`} class="pagination-link">
+    <a href={currentPage === 2 ? baseUrl : `${baseUrl}${currentPage - 1}`} class="pagination-link">
       Previous
     </a>
   )}
   {Array.from({ length: totalPages }, (_, i) => i + 1).map(pageNum => (
     <a
-      href={pageNum === 1 ? "/blog/" : `${baseUrl}${pageNum}`}
+      href={pageNum === 1 ? baseUrl : `${baseUrl}${pageNum}`}
       class={`pagination-link ${pageNum === currentPage ? 'active' : ''}`}
     >
       {pageNum}

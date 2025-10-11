@@ -170,7 +170,7 @@ code {
 /* if body class includes dark-mode */
 body.dark-mode {
 	/* modal text color */
-	modal-text {
+	.modal-text {
 		color: var(--text-main);
 	}
 }
